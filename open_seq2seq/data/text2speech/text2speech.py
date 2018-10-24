@@ -96,7 +96,7 @@ class Text2SpeechDataLayer(DataLayer):
       All signals less than this will be cut from the training set. Defaults to
       0.
     * **duration_max** (int) --- Maximum duration in steps for speech signal.
-      All signals greater than this will be cut from the training set. Defaults 
+      All signals greater than this will be cut from the training set. Defaults
       to 4000.
     * **mel_type** (str): One of ['slaney', 'htk']. Decides which algorithm to
       use to compute mel specs.
@@ -168,7 +168,7 @@ class Text2SpeechDataLayer(DataLayer):
             raise ValueError(
               "data_min must contain mel and magnitude keys"
             )
-          elif (not isinstance(data_min["mel"], float) or 
+          elif (not isinstance(data_min["mel"], float) or
                 not isinstance(data_min["magnitude"], float)):
             raise ValueError(
                 "data_min must be a float"
@@ -265,7 +265,7 @@ class Text2SpeechDataLayer(DataLayer):
     self._dataset = self._dataset.repeat()
 
     if self._both:
-      num_audio_features = self.params['num_audio_features']['mel'] 
+      num_audio_features = self.params['num_audio_features']['mel']
       num_audio_features += self.params['num_audio_features']['magnitude']
     else:
       num_audio_features = self.params['num_audio_features']
@@ -367,8 +367,9 @@ class Text2SpeechDataLayer(DataLayer):
     audio_filename, transcript = element
     transcript = transcript.lower()
     if six.PY2:
-      audio_filename = unicode(audio_filename, "utf-8")
-      transcript = unicode(transcript, "utf-8")
+      pass
+      # audio_filename = unicode(audio_filename, "utf-8")
+      # transcript = unicode(transcript, "utf-8")
     elif not isinstance(transcript, string_types):
       audio_filename = str(audio_filename, "utf-8")
       transcript = str(transcript, "utf-8")
@@ -489,7 +490,8 @@ class Text2SpeechDataLayer(DataLayer):
     """
 
     if six.PY2:
-      transcript = unicode(transcript, "utf-8")
+      pass
+      # transcript = unicode(transcript, "utf-8")
     elif not isinstance(transcript, string_types):
       transcript = str(transcript, "utf-8")
     transcript = transcript.lower()
